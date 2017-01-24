@@ -1,0 +1,11 @@
+<div [ngSwitch]='componentReady'>
+	<div *ngSwitchCase=true>
+		<pt-project-info [project]="project"></pt-project-info>
+		<pt-project-team [team]="team"
+										 [allEmployees]="allEmployees"
+										 (onMemberChosen)="handleMemberChosen($event)"
+										 (onMemberDeleted)="handleMemberDeleted($event)">
+		</pt-project-team>
+	</div>
+	<pt-spinner *ngSwitchCase=false></pt-spinner>
+</div>

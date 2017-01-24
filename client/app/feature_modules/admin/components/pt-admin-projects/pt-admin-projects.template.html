@@ -1,0 +1,49 @@
+<div class="ui center aligned grid" [ngSwitch]='componentReady'>
+	<section class="fourteen wide column pt-admin-projects" *ngSwitchCase=true>
+		<div class="filterSectionWrapper">
+			<div class="pt-filterInput">
+				<div class="ui form">
+					<input type="text" [(ngModel)]="filterText" placeholder="Filter"/>
+				</div>
+			</div>
+			<a [routerLink]="['add']">
+				<button class="ui icon green small button pt-addEmployee">
+					Add Project
+				</button>
+			</a>
+		</div>
+		<table class="ui table">
+			<thead>
+				<tr>
+					<th class="three wide">Name</th>
+					<th class="three wide">Customer</th>
+					<th class="three wide">StartDate</th>
+					<th class="seven wide" colspan=2>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let project of projects | filter:filterText:'Name'; let even = even"
+						[ngClass]="{ 'pt-oddBodyRow': even }">
+					<td class="three wide"><a [routerLink]="['/project', project.Id]">{{project.Name}}</a></td>
+					<td class="three wide">{{project.CustomerName}}</td>
+					<td class="three wide">{{project.StartDate | date:"longDate"}}</td>
+					<td class="four wide">{{project.Description}}</td>
+					<td class="right aligned two wide">
+						<a [routerLink]="['edit', project.Id]">
+							<button class="ui icon blue mini button">
+								<i class="edit icon"></i>
+							</button>
+						</a>
+						<button class="ui icon blue red mini button"
+										pt-project-delete
+										[projectId]="project.Id"
+										(onDeletedProject)="handleDeleteProject($event)">
+							<i class="remove icon"></i>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	<pt-spinner *ngSwitchCase=false></pt-spinner>
+</div>

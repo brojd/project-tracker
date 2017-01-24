@@ -1,0 +1,47 @@
+.pt-dashboard {
+  margin: 50px 0;
+}
+
+.pt-projectName {
+  font-size: 20px;
+}
+
+.pt-headingSection th {
+  background: #e4e4e4;
+  height: 50px;
+}
+
+.pt-statusSection th {
+  border-bottom: 1px solid rgba(0, 80, 77, 0.3);
+}
+
+.pt-ticketsSection {
+  background: #f5f5f5;
+}
+
+.pt-ticketsSection tr {
+  height: 400px;
+}
+
+.pt-dragTarget {
+  background: #e8e8e8;
+}
+
+.pt-ticket {
+  user-select: all;
+}
+
+.pt-ticket:hover, .pt-ticket:active, .pt-ticket:focus {
+  cursor: pointer;
+  background: rgb(239, 255, 254);
+}
+
+.pt-addTicketButton {
+  position: absolute;
+  right: 22px;
+  top: 25px;
+}
+
+.pt-taskButtons {
+  margin-top: 12px;
+}

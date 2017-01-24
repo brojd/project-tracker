@@ -1,0 +1,54 @@
+<div class="pt-modalWrapper">
+	<form class="ui form segment pt-modal" [formGroup]="form" (ngSubmit)="onSubmit()">
+		<div class="ui dividing center aligned header">
+			<h3>{{employee.First}} {{employee.Last}}</h3>
+		</div>
+		<div class="field">
+			<label>Birthday</label>
+			<input type="date" formControlName="Birthday"/>
+		</div>
+		<div *ngIf="form.controls.Birthday.hasError('required') && form.controls.Birthday.touched"
+				 class="ui negative message">
+			Birthday is required
+		</div>
+		<div class="field">
+			<label>Email</label>
+			<input type="text" formControlName="Email"/>
+		</div>
+		<div *ngIf="form.controls.Email.hasError('required') && form.controls.Email.touched"
+				 class="ui negative message">
+			Email is required
+		</div>
+		<div *ngIf="form.controls.Email.hasError('email') && form.controls.Email.touched"
+				 class="ui negative message">
+			Email is invalid
+		</div>
+		<div class="field">
+			<label>Location</label>
+			<input type="text" [(ngModel)]="locationFilter" formControlName="locationFilter" class="pt-locDropdown_dont-close">
+			<pt-dropdown [items]="locations"
+									 [labelProp]="'Name'"
+									 [preventCloseClass]="'pt-locDropdown_dont-close'"
+									 [filterString]="locationFilter"
+									 (onItemChosen)="handleLocationChosen($event)">
+			</pt-dropdown>
+			<div>Chosen location: {{newEmployee.Location.Name}}</div>
+		</div>
+		<div class="field">
+			<label>Address</label>
+			<input type="text" formControlName="Address"/>
+		</div>
+		<div class="field">
+			<label>Skype</label>
+			<input type="text" formControlName="Skype"/>
+		</div>
+		<div class="field">
+			<label>Phone</label>
+			<input type="text" formControlName="Phone"/>
+		</div>
+		<div (click)="closeModal($event)" class="pt-closeModalButton">
+			<i class="remove icon pt-closeModalButton_icon"></i>
+		</div>
+		<button type="submit" [disabled]="!form.valid" class="ui button pt-submitButton">Save & Close</button>
+	</form>
+</div>

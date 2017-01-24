@@ -1,0 +1,39 @@
+<section class="ui centered grid pt-project-info">
+	<div class="ui eight wide column centered">
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th class="center aligned pt-projectName" colspan=3>{{project.Name}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan=4 class="pt-imgTd">
+						<div class="center aligned container"><i class="huge calendar icon"></i></div>
+						<div class="center aligned container pt-dashboard-button">
+							<a [routerLink]="['/dashboard', project.Id]">
+								<button class="ui icon blue small button">
+									Dashboard
+								</button>
+							</a>
+						</div>
+					</td>
+					<td class="pt-label">Customer</td>
+					<td>{{project.CustomerName}}</td>
+				</tr>
+				<tr>
+					<td class="pt-label">Start Date</td>
+					<td>{{project.StartDate | date:"mediumDate"}}</td>
+				</tr>
+				<tr>
+					<td class="pt-label">End Date</td>
+					<td>{{project.EndDate | date:"mediumDate"}}</td>
+				</tr>
+				<tr>
+					<td class="pt-label">Description</td>
+					<td>{{project.Description}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

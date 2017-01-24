@@ -1,0 +1,14 @@
+<div class="ui menu">
+    <a class="header item" [routerLink]="['']">Project Tracker</a>
+    <a class="item" [routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Timesheets</a>
+    <a class="item" [routerLink]="['/employee']" routerLinkActive="active">My Profile</a>
+    <span [ngSwitch]="getCurrentUserRole()">
+        <a class="item" [routerLink]="['/admin']" routerLinkActive="active" *ngSwitchCase="'admin'">Admin</a>
+        <a class="item" [routerLink]="['/admin/projects']" routerLinkActive="active" *ngSwitchCase="'pm'">Projects</a>
+    </span>
+    <div class="right menu">
+        <span class="item" *ngIf="getLoggedIn() | async">Hello {{getUserName()}}</span>
+        <a class="item" [routerLink]="['/login']" *ngIf="!(getLoggedIn() | async)">Log in</a>
+        <a class="item" href="#" (click)="logout()" *ngIf="getLoggedIn() | async">Log out</a>
+    </div>
+</div>

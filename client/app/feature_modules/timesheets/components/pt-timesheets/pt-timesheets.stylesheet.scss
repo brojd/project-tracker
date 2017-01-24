@@ -1,0 +1,67 @@
+.pt-timesheetsWrapper {
+  margin: 50px 0;
+}
+
+.pt-timesheets {
+  min-width: 650px;
+}
+
+.pt-timesheets a {
+  color: #484848;
+}
+
+.pt-weekday {
+  color: rgb(199, 199, 199);
+}
+
+.pt-weekendTd {
+  background: #e8eef3;
+}
+
+.pt-timesheets thead th.pt-timesheetsHeading {
+  font-size: 15px;
+  color: white;
+  text-shadow: -1px -1px #207fc7;
+  letter-spacing: 0.2px;
+}
+
+.pt-timesheets thead th {
+  background: #207fc7;
+  color: #f3f3f3;
+}
+
+.pt-timesheets td {
+  border-right: 1px solid rgba(34,36,38,.1);
+}
+
+.pt-timesheets tbody tr:nth-child(1) td {
+  font-size: 15px;
+  text-shadow: 0 0 1px #969696;
+}
+
+.pt-timesheets tbody tr:nth-child(2) td {
+  box-shadow: 0 -1.3px rgba(23, 107, 107, 0.28);
+}
+
+.pt-totalHoursTr td {
+  border-bottom: 1px solid rgba(34,36,38,.1);
+  background: #e8e8e8;
+  font-weight: 600;
+}
+
+.pt-projectNameTd {
+  background: #f3f3f3;
+}
+
+.pt-plusIcon {
+  line-height: 35px;
+  padding-left: 0 !important;
+}
+
+.pt-plusIcon .icon:hover {
+  cursor: pointer;
+}
+
+.pt-navigateIcon:hover {
+  cursor: pointer;
+}

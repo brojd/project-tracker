@@ -1,0 +1,24 @@
+<section class="ui centered grid pt-employeeProjectsWrapper">
+	<div class="ui sixteen wide column segment pt-employee-projects">
+		<table class="ui celled unstackable table">
+			<thead>
+				<th class="pt-employee-projects_heading" colspan=2>Projects</th>
+			</thead>
+			<tbody *ngFor="let project of projects">
+				<tr>
+					<td colspan=2 class="pt-projectNameTd">
+						<a [routerLink]="['/project', project.Id]"><strong>{{project.Name}}</strong></a>
+					</td>
+				</tr>
+				<tr *ngFor="let ticket of (project.Tickets | openedTickets)">
+					<td class="pt-taskNameTd five wide">
+						<a [routerLink]="['/task/info', ticket.Id]" >{{ticket.Name}}</a>
+					</td>
+					<td>
+						{{ticket.Description}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

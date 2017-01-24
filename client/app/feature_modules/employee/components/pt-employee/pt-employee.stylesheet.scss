@@ -1,0 +1,15 @@
+.pt-employee {
+  margin: 50px 0;
+}
+
+.pt-employeeInfo {
+  min-height: 360px;
+  margin-top: 50px;
+}
+
+@media (max-width: 1200px) {
+  .pt-avatar {
+    width: 200px;
+    height: auto;
+  }
+}

@@ -1,0 +1,49 @@
+<div class="ui center aligned grid" [ngSwitch]='componentReady'>
+	<section class="fourteen wide column pt-admin-employees" *ngSwitchCase=true>
+		<div class="filterSectionWrapper">
+			<div class="pt-filterInput">
+				<div class="ui form">
+					<input type="text" [(ngModel)]="filterText" placeholder="Filter"/>
+				</div>
+			</div>
+			<a [routerLink]="['add']">
+				<button class="ui icon green small button pt-addEmployee">
+					Add employee
+				</button>
+			</a>
+		</div>
+		<table class="ui table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Skype</th>
+					<th colspan=2>Phone</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let employee of employees | filter:filterText:'FullName'; let even = even"
+						[ngClass]="{ 'pt-oddBodyRow': even }">
+					<td>{{employee.FullName}}</td>
+					<td>{{employee.Email}}</td>
+					<td>{{employee.Skype}}</td>
+					<td>{{employee.Phone}}</td>
+					<td class="right aligned">
+						<a [routerLink]="['edit', employee.Id]">
+							<button class="ui icon blue mini button">
+								<i class="edit icon"></i>
+							</button>
+						</a>
+						<button class="ui icon blue red mini button"
+										pt-employee-delete
+										[employeeId]="employee.Id"
+									  (onDeletedEmployee)="handleDeleteEmployee($event)">
+							<i class="remove icon"></i>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	<pt-spinner *ngSwitchCase=false></pt-spinner>
+</div>

@@ -1,0 +1,14 @@
+.pt-dropdown {
+  position: relative;
+}
+
+.pt-dropdown_menu {
+  width: 100% !important;
+  position: absolute;
+  z-index: 5;
+}
+
+.pt-dropdown .pt-dropdown_menu .pt-dropdown_listItem:hover {
+  cursor: pointer;
+  background: #efefef;
+}

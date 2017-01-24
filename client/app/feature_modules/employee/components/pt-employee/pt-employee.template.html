@@ -1,0 +1,19 @@
+<div class="ui centered grid" [ngSwitch]='componentReady'>
+	<section class="pt-employee twelve wide center aligned column" *ngSwitchCase=true>
+			<h3 class="ui center aligned heading">{{employee.FullName}}</h3>
+		<section class="pt-employeeInfo ui left aligned grid">
+			<div class="five wide center middle aligned computer only column">
+				<figure>
+					<img src='./images/programmer.jpg' alt="avatar" class="pt-avatar"/>
+				</figure>
+			</div>
+			<div class="eleven wide computer sixteen wide tablet column">
+				<pt-employee-details [employee]="employee" [allSkills]="allSkills" [employeeSkills]="employeeSkills">
+				</pt-employee-details>
+			</div>
+		</section>
+		<pt-employee-projects></pt-employee-projects>
+	</section>
+	<pt-spinner *ngSwitchCase=false></pt-spinner>
+</div>
+

@@ -1,0 +1,61 @@
+<section class="pt-dashboard" [ngSwitch]='componentReady'>
+	<div class="ui grid" *ngSwitchCase=true>
+		<div class="twelve wide centered column">
+			<table class="ui table">
+				<thead class="center aligned">
+				<tr class="pt-headingSection">
+					<th colspan=5>
+						<span class="pt-projectName">{{project.Name}}</span>
+						<span class="pt-addTicketButton">
+							<button class="ui labeled icon green mini button" (click)="redirectToNewTask()">
+								<i class="plus icon"></i>
+								New Ticket
+							</button>
+						</span>
+					</th>
+				</tr>
+				<tr  class="pt-statusSection">
+					<th *ngFor="let status of ticketStatuses" class="three wide">
+						{{status.Name}}
+					</th>
+				</tr>
+				</thead>
+				<tbody class="center aligned pt-ticketsSection">
+				<tr>
+					<td *ngFor="let status of ticketStatuses; let i = index;"
+							[ngClass]="{'pt-dragTarget': dragOverStyle[i]}"
+							class="three wide"
+							(drop)="onDrop($event); dragOverStyle[i] = false;"
+							(dragover)="allowDrop($event); dragOverStyle[i] = true; draggedTicket.StatusId = status.Id;"
+							(dragleave)="dragOverStyle[i] = false">
+						<div *ngFor="let ticket of ticketsWithStatusId(tickets, status.Id)"
+								 class="ui teal segment pt-ticket"
+								 (dragstart)="draggedTicket = ticket;">
+							<div class="ui list">
+								<li><strong>{{ticket.Name}}</strong></li>
+								<li>{{ticket.Description}}</li>
+								<li>{{getReporterFullName(ticket.Id)}}</li>
+								<li class="pt-taskButtons">
+									<a [routerLink]="['/task/edit', ticket.Id]">
+										<button class="ui icon blue mini button">
+											<i class="edit icon"></i>
+										</button>
+									</a>
+									<button class="ui icon red mini button"
+													pt-task-delete
+													[taskId]="ticket.Id"
+													[redirectToHome]=false
+													(onDeletedTask)="deleteTaskFromView(ticket.Id)">
+										<i class="trash icon"></i>
+									</button>
+								</li>
+							</div>
+						</div>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<pt-spinner *ngSwitchCase=false></pt-spinner>
+</section>

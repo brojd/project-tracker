@@ -1,0 +1,45 @@
+.pt-modalWrapper {
+  background: rgba(0, 0, 0, 0.34);
+  position: absolute;
+  top: -50vh;
+  bottom: -50vh;
+  left: -50vw;
+  right: -50vw;
+  z-index: 2;
+}
+
+.pt-modal {
+  position: absolute;
+  width: 20%;
+  margin: 10px auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  min-width: 300px;
+  z-index:4;
+}
+
+.pt-closeModalButton {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+}
+
+.pt-closeModalButton:hover {
+  cursor: pointer;
+ }
+
+.pt-closeModalButton_icon {
+  display: inline;
+}
+
+.pt-submitButton {
+  margin: 0 auto;
+  display: block;
+}
+
+@media (max-width: 990px) {
+  .pt-modal {
+    left: 63%;
+  }
+}

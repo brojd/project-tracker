@@ -1,0 +1,54 @@
+<section class="ui centered grid pt-admin-add-project">
+	<div class="ui eight wide column segment centered">
+		<form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+			<div class="ui dividing header" *ngIf="project.Name">
+				<h3>{{project.Name}}</h3>
+			</div>
+			<div class="field">
+				<label>Name</label>
+				<input type="text" formControlName="Name" [(ngModel)]="project.Name"/>
+			</div>
+			<div *ngIf="form.controls.Name.hasError('required') && form.controls.Name.touched"
+					 class="ui negative message">
+				Name is required
+			</div>
+			<div class="field">
+				<label>Description</label>
+				<textarea type="text" formControlName="Description"></textarea>
+			</div>
+			<div *ngIf="form.controls.Description.hasError('required') && form.controls.Description.touched"
+					 class="ui negative message">
+				Description name is required
+			</div>
+			<div class="field">
+				<label>Customer name</label>
+				<input type="text" formControlName="CustomerName"/>
+			</div>
+			<div *ngIf="form.controls.CustomerName.hasError('required') && form.controls.CustomerName.touched"
+					 class="ui negative message">
+				Customer name is required
+			</div>
+			<div class="field">
+				<label>Image URL</label>
+				<input type="text" formControlName="ImageUrl"/>
+			</div>
+			<div class="field">
+				<label>Start date</label>
+				<input type="date" formControlName="StartDate"/>
+			</div>
+			<div *ngIf="form.controls.StartDate.hasError('required') && form.controls.StartDate.touched"
+					 class="ui negative message">
+				Start date is required
+			</div>
+			<div class="field">
+				<label>End date</label>
+				<input type="date" formControlName="EndDate"/>
+			</div>
+			<div *ngIf="form.controls.EndDate.hasError('required') && form.controls.EndDate.touched"
+					 class="ui negative message">
+				End date is required
+			</div>
+			<button type="submit" [disabled]="!form.valid" class="ui button pt-submitButton">Save</button>
+		</form>
+	</div>
+</section>

@@ -1,0 +1,50 @@
+<section class="pt-employee-skills">
+	<table class="ui celled middle aligned table">
+		<tbody>
+			<tr *ngFor="let employeeSkill of employeeSkills; let index = index;">
+				<td class="eight wide pt-skillTd"><b>{{employeeSkill.Name}}</b></td>
+				<td class="eight wide pt-skillTd">
+					<span *ngIf="visibleSelectIndex !== index">{{employeeSkill.LevelName}}</span>
+					<select *ngIf="visibleSelectIndex === index"
+									(change)="handleLevelChange($event.target.value, employeeSkill.Id)">
+						<option *ngFor="let level of skillLevels"
+										[value]="level.Id"
+										[selected]="employeeSkill.LevelId === level.Id">
+							{{level.Name}}
+						</option>
+					</select>
+					<button class="ui red icon mini right floated button pt-editButton"
+									(click)="handleDeleteSkill(employeeSkill)">
+						<i class="remove icon"></i>
+					</button>
+					<button class="ui blue icon mini right floated button pt-editButton"
+									(click)="visibleSelectIndex = index">
+						<i class="edit icon"></i>
+					</button>
+				</td>
+			</tr>
+			<tr *ngIf="addFormVisible">
+					<td class="eight wide pt-skillTd">
+						<select [(ngModel)]="newSkill.SkillId">
+							<option *ngFor="let skill of this.getSkillsToChoose()" [value]="skill.Id">{{skill.Name}}</option>
+						</select>
+					</td>
+					<td class="eight wide pt-skillTd">
+						<select [(ngModel)]="newSkill.LevelId">
+							<option *ngFor="let level of skillLevels" [value]="level.Id">{{level.Name}}</option>
+						</select>
+						<button class="ui green icon mini right floated button pt-editButton"
+										(click)="handleAddSkill()">
+							<i class="plus icon"></i>
+						</button>
+					</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="ui labeled icon green mini button pt-addButton"
+					(click)="handleShowAddForm()"
+					*ngIf="!addFormVisible">
+		<i class="plus icon"></i>
+		Add skill
+	</button>
+</section>

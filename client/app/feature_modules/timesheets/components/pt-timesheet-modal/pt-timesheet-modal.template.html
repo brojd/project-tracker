@@ -1,0 +1,22 @@
+<div class="pt-modalWrapper">
+	<form class="ui form segment pt-modal">
+		<div class="field">
+			<label>Timesheet time </label>
+			<input type="number"
+						 [ngModel]="timesheet.LoggedTime"
+						 (ngModelChange)="passLoggedHours($event)"
+						 name="loggedHours"
+						 min=0
+						 step=1/>
+			</div>
+		<div class="field">
+			<label>Comment:</label>
+			<textarea [ngModel]="timesheet.Comment"
+								(ngModelChange)="passComment($event)"
+								 name="comment"></textarea>
+			<div (click)="closeModal($event)" class="pt-closeModalButton">
+				<i class="remove icon pt-closeModalButton_icon"></i>
+			</div>
+		</div>
+	</form>
+</div>

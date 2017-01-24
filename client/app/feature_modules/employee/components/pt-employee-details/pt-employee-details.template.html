@@ -1,0 +1,41 @@
+<div class="ui grid pt-employee-details">
+	<section class="pt-employeeInfo seven wide column">
+		<div class="ui list">
+			<div class="item">
+				<div class="header">Birthday</div>
+				{{employee.Birthday | date:"longDate"}}
+			</div>
+			<div class="item">
+				<div class="header">Email</div>
+				{{employee.Email}}
+			</div>
+			<div class="item">
+				<div class="header">Location</div>
+				{{employee.Location.Name}}
+			</div>
+			<div class="item">
+				<div class="header">Address</div>
+				{{employee.Address}}
+			</div>
+			<div class="item">
+				<div class="header">Skype</div>
+				{{employee.Skype}}
+			</div>
+			<div class="item">
+				<div class="header">Phone</div>
+				{{employee.Phone}}
+			</div>
+			<button class="ui labeled icon blue mini button pt-editButton" (click)="modalVisible=true">
+				<i class="edit icon"></i>
+				Edit
+			</button>
+			<div *ngIf="modalVisible">
+				<pt-employee-modal [employee]="employee" (onCloseModal)="handleCloseModal($event)"></pt-employee-modal>
+			</div>
+		</div>
+	</section>
+	<section class="pt-employeeSkills nine wide column">
+		<pt-employee-skills [employee]="employee" [allSkills]="allSkills" [employeeSkills]="employeeSkills">
+		</pt-employee-skills>
+	</section>
+</div>

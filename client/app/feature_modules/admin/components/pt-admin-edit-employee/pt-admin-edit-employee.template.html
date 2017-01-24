@@ -1,0 +1,92 @@
+<section class="ui centered grid pt-admin-edit-employee">
+	<div class="ui eight wide column segment centered">
+		<form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+			<div class="ui dividing header" *ngIf="employee.First || employee.Last">
+				<h3>{{employee.First}} {{employee.Last}}</h3>
+			</div>
+			<div class="field">
+				<label>First name</label>
+				<input type="text" formControlName="First" [(ngModel)]="employee.First"/>
+			</div>
+			<div *ngIf="form.controls.First.hasError('required') && form.controls.First.touched"
+					 class="ui negative message">
+				First name is required
+			</div>
+			<div class="field">
+				<label>Last name</label>
+				<input type="text" formControlName="Last" [(ngModel)]="employee.Last"/>
+			</div>
+			<div *ngIf="form.controls.Last.hasError('required') && form.controls.Last.touched"
+					 class="ui negative message">
+				Last name is required
+			</div>
+			<div class="field">
+				<label>Email</label>
+				<input type="text" formControlName="Email"/>
+			</div>
+			<div *ngIf="form.controls.Email.hasError('required') && form.controls.Email.touched"
+					 class="ui negative message">
+				Email is required
+			</div>
+			<div *ngIf="form.controls.Email.hasError('email') && form.controls.Email.touched"
+					 class="ui negative message">
+				Email is invalid
+			</div>
+			<div class="field">
+				<label>Password</label>
+				<input type="text" formControlName="Password"/>
+			</div>
+			<div *ngIf="form.controls.Password.hasError('required') && form.controls.Password.touched"
+					 class="ui negative message">
+				Password is required
+			</div>
+			<div class="field">
+				<label>Location</label>
+				<input type="text" [(ngModel)]="locationFilter" formControlName="locationFilter" class="pt-locDropdown_dont-close">
+				<pt-dropdown [items]="locations"
+										 [labelProp]="'Name'"
+										 [preventCloseClass]="'pt-locDropdown_dont-close'"
+										 [filterString]="locationFilter"
+										 (onItemChosen)="handleLocationChosen($event)">
+				</pt-dropdown>
+				<div>Chosen location: {{employee.Location.Name}}</div>
+			</div>
+			<div class="field">
+				<label>Address</label>
+				<input type="text" formControlName="Address"/>
+			</div>
+			<div class="field">
+				<label>Skype</label>
+				<input type="text" formControlName="Skype"/>
+			</div>
+			<div class="field">
+				<label>Phone</label>
+				<input type="text" formControlName="Phone"/>
+			</div>
+			<div class="field">
+				<label>Image URL</label>
+				<input type="text" formControlName="ImageUrl"/>
+			</div>
+			<div class="field">
+				<label>Position</label>
+				<input type="text" [(ngModel)]="positionFilter" formControlName="positionFilter" class="pt-posDropdown_dont-close">
+				<pt-dropdown [items]="positions"
+										 [labelProp]="'Name'"
+										 [preventCloseClass]="'pt-posDropdown_dont-close'"
+										 [filterString]="positionFilter"
+										 (onItemChosen)="handlePositionChosen($event)">
+				</pt-dropdown>
+				<div>Chosen position: {{employee.Position.Name}}</div>
+			</div>
+			<div class="field">
+				<label>Birthday</label>
+				<input type="date" formControlName="Birthday"/>
+			</div>
+			<div *ngIf="form.controls.Birthday.hasError('required') && form.controls.Birthday.touched"
+					 class="ui negative message">
+				Birthday is required
+			</div>
+			<button type="submit" [disabled]="!form.valid" class="ui button pt-submitButton">Save</button>
+		</form>
+	</div>
+</section>

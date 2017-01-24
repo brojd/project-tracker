@@ -1,0 +1,31 @@
+.pt-modalWrapper {
+  background: rgba(0, 0, 0, 0.34);
+  position: absolute;
+  top: -50vh;
+  bottom: -50vh;
+  left: -50vw;
+  right: -50vw;
+}
+
+.pt-modal {
+  position: absolute;
+  width: 20%;
+  margin: 10px auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+}
+
+.pt-closeModalButton {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+}
+
+.pt-closeModalButton:hover {
+  cursor: pointer;
+ }
+
+.pt-closeModalButton_icon {
+  display: inline;
+}

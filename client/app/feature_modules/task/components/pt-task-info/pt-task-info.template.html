@@ -1,0 +1,81 @@
+<section class="ui centered grid pt-task-info" [ngSwitch]='componentReady'>
+	<div class="ui eight wide column segment centered" *ngSwitchCase=true>
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th class="center aligned pt-taskName" colspan=2>Task {{task.Name}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="pt-label">Project</td>
+					<td>{{task.Project.Name}}</td>
+				</tr>
+				<tr>
+					<td class="pt-label">Status</td>
+					<td>{{task.Status.Name}}</td>
+				</tr>
+				<tr>
+					<td class="pt-label">Type</td>
+					<td>{{task.TicketType.Name}}</td>
+				</tr>
+				<tr>
+					<td class="pt-label">Estimate</td>
+					<td>{{task.Estimate}}</td>
+				</tr>
+				<tr>
+					<td class="pt-label">Start Date</td>
+					<td>{{task.StartDate | date:"mediumDate"}}</td>
+				</tr>
+				<tr>
+					<td class="pt-label">End Date</td>
+					<td>{{task.EndDate | date:"mediumDate"}}</td>
+				</tr>
+				<tr>
+					<td class="pt-label">Description</td>
+					<td>{{task.Description}}</td>
+				</tr>
+				<tr>
+					<td class="pt-label">Reporter</td>
+					<td>
+						<img src="./images/male.png" alt="male_image" class="ui avatar image" *ngIf="task.Reporter.First && isMale(task.Reporter.First)"/>
+						<img src="./images/female.jpg" alt="male_image" class="ui avatar image" *ngIf="task.Reporter.First && !isMale(task.Reporter.First)"/>
+						{{task.Reporter.FullName}}
+					</td>
+				</tr>
+				<tr>
+					<td class="pt-label">Responsible</td>
+					<td>
+						<img src="./images/male.png" alt="male_image" class="ui avatar image" *ngIf="task.Responsible.First && isMale(task.Responsible.First)"/>
+						<img src="./images/female.jpg" alt="male_image" class="ui avatar image" *ngIf="task.Responsible.First && !isMale(task.Responsible.First)"/>
+						{{task.Responsible.FullName}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="ui center aligned container pt-actions">
+			<a [routerLink]="['/task/new']" class="pt-actions_button">
+				<button class="ui labeled icon teal button">
+					<i class="plus icon"></i>
+					New
+				</button>
+			</a>
+			<a [routerLink]="['/task/edit', task.Id]" class="pt-actions_button">
+				<button class="ui labeled icon blue button">
+					<i class="edit icon"></i>
+					Edit
+				</button>
+			</a>
+			<a class="pt-actions_button">
+				<button class="ui labeled icon red button"
+								pt-task-delete
+								[taskId]="task.Id"
+								[redirectToHome]=true>
+					<i class="trash icon"></i>
+					Delete
+				</button>
+			</a>
+		</div>
+	</div>
+	<pt-spinner *ngSwitchCase=false></pt-spinner>
+</section>

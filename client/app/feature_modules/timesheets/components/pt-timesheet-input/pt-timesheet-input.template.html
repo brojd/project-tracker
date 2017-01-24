@@ -1,0 +1,10 @@
+<form class="ui form" [attr.data-tooltip]="currentTimesheet.Comment || null" data-position="top left">
+	<input type="number"
+				 [ngModel]="currentTimesheet.LoggedTime"
+				 (ngModelChange)="passTimesheetValue($event)"
+				 [ngClass]="{'dimmed':commented}"
+				 name="loggedHours"
+				 min=0
+				 step=1
+				 class="pt-timesheet-input" />
+</form>

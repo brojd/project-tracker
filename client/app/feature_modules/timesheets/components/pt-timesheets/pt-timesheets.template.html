@@ -1,0 +1,67 @@
+<section class="ui centered grid pt-timesheetsWrapper" [ngSwitch]='componentReady'>
+	<div class="ui twelve wide column segment pt-timesheets" *ngSwitchCase=true>
+		<table class="ui celled unstackable table">
+			<thead>
+				<th class="one wide pt-timesheetsHeading">Timesheets</th>
+				<th class="one wide">
+					<i (click)="decreaseDate()" class="arrow left large icon pt-navigateIcon"></i>
+				</th>
+				<th *ngFor="let date of allDates" class="two wide">
+					<div class="content">
+						<div class="ui sub header"><span class="pt-weekday">{{ date | date:"EEEE" }}</span></div>
+						{{date | date:"MM/dd"}}
+					</div>
+				</th>
+				<th class="one wide" *ngIf="!isDateActual()">
+					<i (click)="increaseDate()" class="arrow right large icon pt-navigateIcon"></i>
+				</th>
+			</thead>
+			<tbody *ngFor="let project of projects">
+				<tr>
+					<td colspan=9>
+						<a [routerLink]="['project', project.Id]"><strong>{{project.Name}}</strong></a>
+					</td>
+				</tr>
+				<tr *ngFor="let ticket of (project.Tickets | openedTickets)">
+					<td colspan=2 class="pt-projectNameTd">
+						<a [routerLink]="['task/info', ticket.Id]" >{{ticket.Name}}</a>
+					</td>
+					<td *ngFor="let date of allDates" [ngClass]="{'pt-weekendTd':isSatOrSun(date)}">
+						<div class="ui grid">
+							<div class="eleven wide column">
+								<pt-timesheet-input [currentDate]=date
+																		[ticket]=ticket
+																		(onTimesheetChange)="saveTimesheet($event)">
+								</pt-timesheet-input>
+							</div>
+							<div class="pt-plusIcon five wide center aligned column">
+								<i class="plus icon" (click)="openModal(date, ticket)"></i>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr class="pt-totalHoursTr">
+					<td colspan=2><b>Total</b></td>
+					<td *ngFor="let date of allDates">
+						{{getTotalHours(project, date)}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="ui icon message" *ngIf="!projects.length">
+			<i class="warning icon"></i>
+			<div class="content">
+				<div class="header">
+					You are not involved in any project
+				</div>
+				<p>To use timesheets make sure your PM assigned you to the current project</p>
+			</div>
+		</div>
+		<aside *ngIf="modalVisible">
+			<pt-timesheet-modal (onCloseModal)="handleModalClosed($event)"
+													[timesheet]="currentTimesheet">
+			</pt-timesheet-modal>
+		</aside>
+	</div>
+	<pt-spinner *ngSwitchCase=false></pt-spinner>
+</section>

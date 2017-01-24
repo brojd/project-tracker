@@ -1,0 +1,47 @@
+<section class="ui centered grid pt-project-team">
+	<div class="twelve wide column">
+		<table class="ui table">
+			<thead>
+				<tr class="pt-headingRow">
+					<th colspan=3 class="pt-heading">Team</th>
+					<th colspan=2 class="right aligned">
+						<span *ngIf="currentUserRole === 'admin' || currentUserRole === 'pm'">
+							<button class="ui icon green small button" (click)="chooseMemberVisible = true" *ngIf="!chooseMemberVisible">
+								Add to team
+							</button>
+							<div class="pt-chooseMember center aligned ui form" *ngIf="chooseMemberVisible">
+								<input type="text" [(ngModel)]="membersFilter" class="pt-dropdown_dont-close">
+								<pt-dropdown [items]="filterEmployees(allEmployees)"
+														 [labelProp]="'FullName'"
+														 [preventCloseClass]="'pt-dropdown_dont-close'"
+														 [filterString]="membersFilter"
+														 (onItemChosen)="handleMemberChosen($event)">
+								</pt-dropdown>
+							</div>
+						</span>
+					</th>
+				</tr>
+				<tr>
+					<th>Name</th>
+					<th>Position</th>
+					<th>Email</th>
+					<th colspan=2>Skype</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let member of team; let even = even" [ngClass]="{ 'pt-oddBodyRow': even }">
+					<td>{{member.FullName}}</td>
+					<td>{{member.Position.Name}}</td>
+					<td>{{member.Email}}</td>
+					<td>{{member.Skype}}</td>
+					<td class="right aligned">
+						<i *ngIf="currentUserRole === 'admin' || currentUserRole === 'pm'"
+							 class="remove icon pt-deleteButton"
+							 (click)="deleteMember(member.Id)">
+						</i>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

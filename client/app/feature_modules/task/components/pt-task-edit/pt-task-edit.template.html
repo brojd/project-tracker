@@ -1,0 +1,90 @@
+<section class="ui centered grid pt-task-edit">
+	<div class="ui eight wide column segment centered">
+		<form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+			<div class="ui dividing centered header" *ngIf="task.Name">
+				<h3>{{task.Name}}</h3>
+			</div>
+			<div class="field">
+				<label>Name</label>
+				<input type="text" formControlName="Name" [(ngModel)]="task.Name"/>
+			</div>
+			<div *ngIf="form.controls.Name.hasError('required') && form.controls.Name.touched"
+					 class="ui negative message">
+				Name is required
+			</div>
+			<div class="field">
+				<label>Reporter</label>
+				<input type="text" [(ngModel)]="reportersFilter" formControlName="reporterFilter" class="pt-repDropdown_dont-close">
+				<pt-dropdown [items]="employees"
+										 [labelProp]="'FullName'"
+										 [preventCloseClass]="'pt-repDropdown_dont-close'"
+										 [filterString]="reportersFilter"
+										 (onItemChosen)="handleReporterChosen($event)">
+				</pt-dropdown>
+				<p>Chosen reporter: {{getEmployeeFullNameById(task.ReporterId, employees)}}</p>
+			</div>
+			<div class="field">
+				<label>Responsible</label>
+				<input type="text" [(ngModel)]="responsibleFilter" formControlName="responsibleFilter" class="pt-resDropdown_dont-close">
+				<pt-dropdown [items]="employees"
+										 [labelProp]="'FullName'"
+										 [preventCloseClass]="'pt-resDropdown_dont-close'"
+										 [filterString]="responsibleFilter"
+										 (onItemChosen)="handleResponsibleChosen($event)">
+				</pt-dropdown>
+				<p>Chosen responsible: {{getEmployeeFullNameById(task.ResponsibleId, employees)}}</p>
+			</div>
+			<div class="field">
+				<label>Project</label>
+				<select formControlName="ProjectId">
+					<option *ngFor="let project of projects" [value]="project.Id">{{project.Name}}</option>
+				</select>
+			</div>
+			<div class="field">
+				<label>Status</label>
+				<select formControlName="StatusId">
+					<option *ngFor="let status of ticketStatuses" [value]="status.Id">{{status.Name}}</option>
+				</select>
+			</div>
+			<div class="field">
+				<label>Type</label>
+				<select formControlName="TypeId">
+					<option *ngFor="let type of ticketTypes" [value]="type.Id">{{type.Name}}</option>
+				</select>
+			</div>
+			<div class="field">
+				<label>Estimate</label>
+				<input type="number" formControlName="Estimate"/>
+			</div>
+			<div *ngIf="form.controls.Estimate.hasError('required') && form.controls.Estimate.touched"
+					 class="ui negative message">
+				Estimate is required
+			</div>
+			<div class="field">
+				<label>Start Date</label>
+				<input type="date" formControlName="StartDate"/>
+			</div>
+			<div *ngIf="form.controls.StartDate.hasError('required') && form.controls.StartDate.touched"
+					 class="ui negative message">
+				Start date is required
+			</div>
+			<div class="field">
+				<label>End Date</label>
+				<input type="date" formControlName="EndDate"/>
+			</div>
+			<div *ngIf="form.controls.EndDate.hasError('required') && form.controls.EndDate.touched"
+					 class="ui negative message">
+				End date is required
+			</div>
+			<div class="field">
+				<label>Description</label>
+				<textarea formControlName="Description"></textarea>
+			</div>
+			<div class="ui center aligned container pt-actions">
+				<button type="submit" class="ui icon green button" [disabled]="!form.valid">
+					Save
+				</button>
+			</div>
+		</form>
+	</div>
+</section>

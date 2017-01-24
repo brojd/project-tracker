@@ -1,0 +1,10 @@
+<div class="pt-dropdown">
+	<div class="ui vertical pointing menu pt-dropdown_menu" *ngIf="dropdownVisible">
+		<li *ngFor="let item of (items | filter:filterString:labelProp)"
+				[ngClass]="['item']"
+				class="pt-dropdown_listItem"
+				(click)="itemClicked(item)">
+			{{item[labelProp]}}
+		</li>
+	</div>
+</div>
