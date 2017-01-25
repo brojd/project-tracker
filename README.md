@@ -8,7 +8,7 @@ This is front application to track work time of project team members and to mana
 To run the app you should:
 
 1. Run ```npm i```
-2. Run ```npm start```
+2. Run ```gulp serve```
 3. Open your browser on: ```http://localhost:9000/```.
 
 
